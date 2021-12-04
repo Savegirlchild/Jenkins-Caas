@@ -1,0 +1,54 @@
+jenkins:
+  systemMessage: "Configuration as a code"
+tool:  
+  maven:
+    installations:
+     - name: "maven"
+       properties:
+       - installSource:
+           installers:
+           - maven:
+              id: "3.5.4"
+  
+  sonarRunnerInstallation:
+    installations:
+     - name: "sonarqube"
+       properties:
+        - installSource:
+           installers:
+           - sonarRunnerInstallation:
+                id: "4.6.2.2472"
+
+credentials:
+  system: 
+    domainCredentials:
+      - credentials: 
+          - string:
+              scope: GLOBAL
+              id: "sonartoken"
+              secret: "sonar-token"
+              description: "Sonar token"
+          - usernamePassword:
+              scope: GLOBAL
+              id: "jiratoken"
+              username: "nansahu@deloitte.com"
+              password: "nandita-jira"
+              description: "jira api token"
+unclassified:
+   sonarGlobalConfiguration:
+     installations:
+        - name: "sonarqube"
+          serverUrl: "localhost:9000"
+          credentialsId: sonartoken
+   jiraGlobalConfiguration:
+    sites:
+      - url: "http://jira.codehaus.org/"
+        credentialsId: jiratoken
+
+       
+
+
+
+
+
+    
